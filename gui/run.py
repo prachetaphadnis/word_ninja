@@ -2,19 +2,25 @@ import pygame
 import time
 import random
 
+from gui.utils import yaml_file_to_dict
+
 # == GUI ====================
 # screen
-background_color = ("white")
+SCREEN_COLOR = "white"
+SCREEN_WIDTH = 500
+SCREEN_HEIGHT = 500
 
 # word box
 WORD_BOX_WITDH = 100
 WORD_BOX_HEIGHT = 100
-TEXT_SIZE = 20
-color_text = ("black")
-color_word_box = ("yellow")
+TEXT_FONT_SIZE = 18
+TEXT_COLOR = "black"
+WORD_BOX_COLOR = "yellow"
 
-NEW_WORD_BOX_EVERY = 2000
+NEW_WORD_BOX_EVERY = 1000
 FPS = 60
+
+TRANSLATIONS_PATH = "en_es.yaml"
 
 # ===========================
 
@@ -25,60 +31,128 @@ new_word_box_event = pygame.USEREVENT + 1
 pygame.time.set_timer(new_word_box_event, NEW_WORD_BOX_EVERY)
         
 class WordBox(pygame.sprite.Sprite):
-    def __init__(self, text, color_text, x, y):
-       # Call the parent class (Sprite) constructor
-       pygame.sprite.Sprite.__init__(self)
+    def __init__(self, text: str, x: int, y: int):
+        pygame.sprite.Sprite.__init__(self)
+        
+        self.text = text
+        self.text_color = TEXT_COLOR
+        self.text_font_size = TEXT_FONT_SIZE
+        self.word_box_width = WORD_BOX_WITDH
+        self.word_box_height = WORD_BOX_HEIGHT
+        self.word_box_color = WORD_BOX_COLOR
+        
+        # top left x, y coordinates
+        self.init_x = x
+        self.init_y = y
 
-       # Create a text box and fill with color
-       self.font = pygame.font.SysFont("Arial", TEXT_SIZE)
-       self.textSurf = self.font.render(text, 1, color_text)
-       self.image = pygame.Surface([WORD_BOX_WITDH, WORD_BOX_HEIGHT])
-       self.image.fill(color_word_box)
-       W = self.textSurf.get_width()
-       H = self.textSurf.get_height()
-       self.image.blit(self.textSurf, [WORD_BOX_WITDH/2 - W, WORD_BOX_HEIGHT/2 - H/2])
+        # init sprite (box with text)
+        self._init_sprite()
 
-       # Update position of word box
-       self.rect = self.image.get_rect()
-       self.rect.center = (x, y)
+    def _init_sprite(self):
+        # image surface
+        self.image = pygame.Surface([self.word_box_width, self.word_box_height])
+        self.image.fill(self.word_box_color)
+        
+        # text surface
+        font = pygame.font.SysFont("Arial", self.text_font_size, bold = True)
+        self.text_surface = font.render(self.text, 1, self.text_color)       
+        W = self.text_surface.get_width()
+        H = self.text_surface.get_height()
+        
+        # image surface + text surface
+        self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height/2 - H/2])
+
+        # Update position of word box
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (self.init_x, self.init_y)
 
     def update(self):
         self.rect.move_ip(0, 2)
+        if self.rect.bottom > SCREEN_HEIGHT:
+            self.image.fill("red")
 
 
-def draw_word_box(words):
-    x = random.choice([100, 200, 300, 400])
-    word = WordBox("NEW", color_text, x, 0)
-    words.add(word)
-    return words
+def update_word_boxes(word_box_group: pygame.sprite.Group, translations: dict, metrics: dict):
+    # new box
+    new_random_word = random.choice(list(translations.keys()))
+    x = random.choice([0, 100, 200, 300, 400])
+    word_box = WordBox(new_random_word, x, 0)
+    word_box_group.add(word_box)
+
+
+def init_screen(width: int, height: int):
+    screen = pygame.display.set_mode([width, height])
+    pygame.display.set_caption("Word Ninja")
+    return screen
+
+
+def fetch_transcripts():
+    pass
+
+
+def score():
+    pass
+
+
+def load_translations():
+    return yaml_file_to_dict(TRANSLATIONS_PATH)
+
+
+def init_metrics():
+    return {
+        "score": 0,
+        "missed": 0,
+        "hits": 0,
+    }
+    
+
+def display_time(screen, seconds_left: int):
+    font = pygame.font.SysFont("Arial", 36, bold = True)
+    timer_text = font.render(f"Time Left: {seconds_left}", True, "black")
+    screen.blit(timer_text, (SCREEN_WIDTH - 250, SCREEN_HEIGHT - 50))
+
+
+def display_score(screen, score: int):
+    font = pygame.font.SysFont("Arial", 36, bold = True)
+    score_text = font.render(f'Score: {score}', True, "black")
+    screen.blit(score_text, (10, SCREEN_HEIGHT-50))
 
 
 def run():
-    # Set up the drawing window
-    screen = pygame.display.set_mode([500, 500])
-    pygame.display.set_caption("Word Ninja")
+    translations = load_translations()
+    screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
+    metrics = init_metrics()
+    word_box_group = pygame.sprite.Group()
 
-    words = pygame.sprite.Group()
-
+    font = pygame.font.SysFont("Arial", 36, bold = True)
+    
     running = True
+    start_ticks = pygame.time.get_ticks()  # Start timer
     while running:
         clock.tick(FPS)
-        
-        # TODO: fetch transcriptions
-        # TODO: match/score function
 
-        screen.fill(background_color)
-        words.update()
-        words.draw(screen)
+        # Calculate time left
+        seconds_left = (20000 - (pygame.time.get_ticks() - start_ticks)) // 1000
+        if seconds_left <= 0:
+            running = False  # End the game when the timer reaches 0
+
+        # fetch_transcripts()
+        # score()
+
+        screen.fill(SCREEN_COLOR)
+        word_box_group.update()
+        word_box_group.draw(screen)
+        
+        display_score(screen, 0)
+        display_time(screen, seconds_left)
+        pygame.display.flip()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == new_word_box_event:
-                words = draw_word_box(words)
-
-        pygame.display.flip()
-
+                update_word_boxes(word_box_group, translations, metrics)
+    
     pygame.quit()
 
 
