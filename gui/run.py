@@ -60,10 +60,8 @@ def run():
 
     words = pygame.sprite.Group()
 
-    # Run until the user asks to quit
     running = True
     while running:
-
         clock.tick(FPS)
         
         # TODO: fetch transcriptions
@@ -73,7 +71,6 @@ def run():
         words.update()
         words.draw(screen)
 
-        # Did the user click the window close button?
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -82,8 +79,6 @@ def run():
 
         pygame.display.flip()
 
-
-    # Done! Time to quit.
     pygame.quit()
 
 
