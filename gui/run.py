@@ -168,7 +168,8 @@ def run():
 
                 for word_box in word_box_group:
                     if word_box.rect.collidepoint(x, y):
-                        word_box.image.fill("green")
+                        fish_img = pygame.image.load('gui/images/fish.jpeg')
+                        word_box.image = pygame.transform.scale(fish_img, (100, 100))
                         word_box.hit = True
 
             if event.type == new_word_box_event:
