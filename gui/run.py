@@ -111,7 +111,7 @@ def update_score(word_box_group):
     for word_box in word_box_group:
         if word_box.miss:
             score -= 1
-        if word_box.hit:
+        elif word_box.hit:
             score += 1
     return score
 
@@ -172,7 +172,7 @@ def run(lang, level):
                 word = word
 
             for word_box in word_box_group:
-                if word == word_box.translation:
+                if word == word_box.translation and not word_box.miss:
                     word_box.image = pygame.transform.scale(image_resources["fish"], (100, 100))
                     word_box.hit = True
 
