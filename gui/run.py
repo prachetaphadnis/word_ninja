@@ -72,7 +72,7 @@ class WordBox(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.move_ip(0, 2)
-        if self.rect.bottom > SCREEN_HEIGHT:
+        if self.rect.bottom > SCREEN_HEIGHT and not self.hit:
             self.image.fill("red")
             self.miss = True
 
@@ -163,7 +163,6 @@ def run():
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
-                print(f"Mouse click at x={x}, y={y}")
 
                 for word_box in word_box_group:
                     if word_box.rect.collidepoint(x, y):
