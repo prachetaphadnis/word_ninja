@@ -17,11 +17,11 @@ SCREEN_HEIGHT = 500
 # word box
 WORD_BOX_WITDH = 100
 WORD_BOX_HEIGHT = 100
-TEXT_FONT_SIZE = 18
+TEXT_FONT_SIZE = 20
 TEXT_COLOR = "black"
 WORD_BOX_COLOR = "yellow"
 
-NEW_WORD_BOX_EVERY = 2000
+NEW_WORD_BOX_EVERY = 100
 FPS = 60
 
 TRANSLATIONS_PATH = "en_es.yaml"
@@ -63,7 +63,7 @@ class WordBox(pygame.sprite.Sprite):
         # self.image.fill(self.word_box_color)
 
         # parachute surface
-        self.image = pygame.image.load(Path('gui/images/parachute.jpg'))
+        self.image = pygame.image.load(Path('gui/images/parachute.png')).convert_alpha()
         self.image = pygame.transform.scale(self.image, (100, 100))
 
         # text surface
@@ -74,7 +74,7 @@ class WordBox(pygame.sprite.Sprite):
 
         # image surface + text surface
         # self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height/2 - H/2])
-        self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height - 35])
+        self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height - 25])
 
         # Update position of word box
         self.rect = self.image.get_rect()
@@ -84,7 +84,7 @@ class WordBox(pygame.sprite.Sprite):
         self.rect.move_ip(0, 2)
         if self.rect.bottom > SCREEN_HEIGHT and not self.hit:
             # self.image.fill("red")
-            self.image = pygame.image.load(Path('gui/images/explosion.jpg'))
+            self.image = pygame.image.load(Path('gui/images/explosion.png')).convert_alpha()
             self.image = pygame.transform.scale(self.image, (100, 100))
             self.miss = True
 
@@ -156,7 +156,7 @@ def run():
         clock.tick(FPS)
 
         # Calculate time left
-        seconds_left = (20000 - (pygame.time.get_ticks() - start_ticks)) // 1000
+        seconds_left = (60000 - (pygame.time.get_ticks() - start_ticks)) // 1000
         if seconds_left <= 0:
             running = False  # End the game when the timer reaches 0
 
@@ -167,7 +167,7 @@ def run():
 
         for word_box in word_box_group:
             if word == word_box.translation:
-                fish_img = pygame.image.load('gui/images/fish.jpeg')
+                fish_img = pygame.image.load('gui/images/fish.png').convert_alpha()
                 word_box.image = pygame.transform.scale(fish_img, (100, 100))
                 word_box.update_text()
                 word_box.hit = True
