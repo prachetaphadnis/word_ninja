@@ -1,7 +1,6 @@
 import argparse
 import pygame
 import threading
-import time
 import random
 from main import SMTranscribe, QUEUE
 from pathlib import Path
@@ -25,7 +24,7 @@ WORD_BOX_COLOR = "yellow"
 NEW_WORD_BOX_EVERY = 1000
 FPS = 60
 
-GAME_TIME_IN_SECONDS = 20
+GAME_TIME_IN_SECONDS = 30
 METRICS_FONT_SIZE = 36
 TRANSLATIONS_DIR = "./words"
 
@@ -113,7 +112,7 @@ def update_score(word_box_group):
         if word_box.miss:
             score -= 1
         if word_box.hit:
-            score += 2
+            score += 1
     return score
 
 
@@ -136,7 +135,6 @@ def display_score(screen, score: int):
 def run(lang, level):
     translations = load_translations(lang, level)
     screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
-    word_box_group = pygame.sprite.Group()
 
     # load image resources
     image_resources = {
@@ -147,8 +145,8 @@ def run(lang, level):
     }
 
     running = True
+    word_box_group = pygame.sprite.Group()
     start_ticks = pygame.time.get_ticks()
-
     word = ""
 
     while running:
@@ -160,10 +158,11 @@ def run(lang, level):
             screen.fill(SCREEN_COLOR)
             screen.blit(image_resources["background"], (0, 0))
             font = pygame.font.SysFont("Arial", 36, bold = True)
-            gameover = font.render("Press R to Respawn", False, (255, 255, 255))
+            gameover = font.render("Press R to Respawn", False, "white")
             rect = gameover.get_rect()
             rect.center = screen.get_rect().center
             screen.blit(gameover, rect)
+            display_score(screen, score)
             pygame.display.flip()
             # running = False  # End the game when the timer reaches 0
         else:
@@ -175,7 +174,6 @@ def run(lang, level):
             for word_box in word_box_group:
                 if word == word_box.translation:
                     word_box.image = pygame.transform.scale(image_resources["fish"], (100, 100))
-                    # word_box.update_text()
                     word_box.hit = True
 
             screen.fill(SCREEN_COLOR)
@@ -195,13 +193,11 @@ def run(lang, level):
 
             if event.type == new_word_box_event:
                 update_word_boxes(word_box_group, translations, image_resources)
-            
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_r:
-                    run(lang, level)
 
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_r:
+                start_ticks = pygame.time.get_ticks()
+                word_box_group = pygame.sprite.Group()
 
-    time.sleep(3)
     pygame.quit()
 
 
