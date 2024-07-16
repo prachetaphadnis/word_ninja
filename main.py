@@ -55,11 +55,12 @@ class SMTranscribe:
         settings.sample_rate = SAMPLE_RATE
         settings.chunk_size = CHUNK_SIZE
 
-        print("Starting transcription (type Ctrl-C to stop):")
-        with sd.RawInputStream(
-                channels=1, samplerate=44_100, dtype="float32"
-            ) as stream:
-            self.ws.run_synchronously(RawInputStreamWrapper(stream), transcription_conf, settings)
+        print("Starting transcription")
+        try:
+            with sd.RawInputStream(channels=1, samplerate=44_100, dtype="float32") as stream:
+                self.ws.run_synchronously(RawInputStreamWrapper(stream), transcription_conf, settings)
+        except:
+            print("Shutting down transcriber")
 
 
 def display_text(word, screen, background_color, text_color):
