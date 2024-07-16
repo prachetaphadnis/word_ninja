@@ -45,6 +45,10 @@ class WordBox(pygame.sprite.Sprite):
         self.init_x = x
         self.init_y = y
 
+        # state
+        self.hit = False
+        self.miss = False
+
         # init sprite (box with text)
         self._init_sprite()
 
@@ -70,6 +74,7 @@ class WordBox(pygame.sprite.Sprite):
         self.rect.move_ip(0, 2)
         if self.rect.bottom > SCREEN_HEIGHT:
             self.image.fill("red")
+            self.miss = True
 
 
 def update_word_boxes(word_box_group: pygame.sprite.Group, translations: dict, metrics: dict):
@@ -90,8 +95,14 @@ def fetch_transcripts():
     pass
 
 
-def score():
-    pass
+def update_score(word_box_group):
+    score = 0
+    for word_box in word_box_group:
+        if word_box.miss:
+            score -= 1
+        if word_box.hit:
+            score += 2
+    return score
 
 
 def load_translations():
@@ -123,9 +134,8 @@ def run():
     screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
     metrics = init_metrics()
     word_box_group = pygame.sprite.Group()
-
-    font = pygame.font.SysFont("Arial", 36, bold = True)
     
+    score = 0
     running = True
     start_ticks = pygame.time.get_ticks()  # Start timer
     while running:
@@ -137,13 +147,14 @@ def run():
             running = False  # End the game when the timer reaches 0
 
         # fetch_transcripts()
-        # score()
 
         screen.fill(SCREEN_COLOR)
         word_box_group.update()
         word_box_group.draw(screen)
         
-        display_score(screen, 0)
+        score = update_score(word_box_group)
+        
+        display_score(screen, score)
         display_time(screen, seconds_left)
         pygame.display.flip()
 
@@ -153,6 +164,8 @@ def run():
             if event.type == new_word_box_event:
                 update_word_boxes(word_box_group, translations, metrics)
     
+    
+    time.sleep(3)
     pygame.quit()
 
 
