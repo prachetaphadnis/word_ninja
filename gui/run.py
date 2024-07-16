@@ -122,13 +122,13 @@ def load_translations(lang, level):
 
 def display_time(screen, seconds_left: int):
     font = pygame.font.SysFont("Arial", METRICS_FONT_SIZE, bold = True)
-    timer_text = font.render(f"Time Left: {seconds_left}", True, "black")
+    timer_text = font.render(f"Time Left: {seconds_left}", True, "white")
     screen.blit(timer_text, (SCREEN_WIDTH - 230, SCREEN_HEIGHT - 50))
 
 
 def display_score(screen, score: int):
     font = pygame.font.SysFont("Arial", METRICS_FONT_SIZE, bold = True)
-    score_text = font.render(f'Score: {score}', True, "black")
+    score_text = font.render(f'Score: {score}', True, "white")
     screen.blit(score_text, (10, SCREEN_HEIGHT-50))
 
 
