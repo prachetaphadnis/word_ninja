@@ -58,10 +58,6 @@ class WordBox(pygame.sprite.Sprite):
         self._init_sprite()
 
     def _init_sprite(self):
-        # image surface
-        # self.image = pygame.Surface([self.word_box_width, self.word_box_height])
-        # self.image.fill(self.word_box_color)
-
         # parachute surface
         self.image = pygame.image.load(Path('gui/images/parachute.png')).convert_alpha()
         self.image = pygame.transform.scale(self.image, (100, 100))
@@ -82,9 +78,9 @@ class WordBox(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.move_ip(0, 2)
+        boom_image = pygame.image.load(Path('gui/images/explosion.png')).convert_alpha()
         if self.rect.bottom > SCREEN_HEIGHT and not self.hit:
-            # self.image.fill("red")
-            self.image = pygame.image.load(Path('gui/images/explosion.png')).convert_alpha()
+            self.image = boom_image
             self.image = pygame.transform.scale(self.image, (100, 100))
             self.miss = True
 
@@ -169,7 +165,7 @@ def run():
             if word == word_box.translation:
                 fish_img = pygame.image.load('gui/images/fish.png').convert_alpha()
                 word_box.image = pygame.transform.scale(fish_img, (100, 100))
-                word_box.update_text()
+                # word_box.update_text()
                 word_box.hit = True
 
         screen.fill(SCREEN_COLOR)
