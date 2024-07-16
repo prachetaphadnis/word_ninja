@@ -1,12 +1,13 @@
 import pygame
 import time
 import random
+from pathlib import Path
 
 from gui.utils import yaml_file_to_dict
 
 # == GUI ====================
 # screen
-SCREEN_COLOR = "white"
+SCREEN_COLOR = (59, 108, 160)
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 500
 
@@ -54,8 +55,12 @@ class WordBox(pygame.sprite.Sprite):
 
     def _init_sprite(self):
         # image surface
-        self.image = pygame.Surface([self.word_box_width, self.word_box_height])
-        self.image.fill(self.word_box_color)
+        # self.image = pygame.Surface([self.word_box_width, self.word_box_height])
+        # self.image.fill(self.word_box_color)
+
+        # parachute surface
+        self.image = pygame.image.load(Path('parachute.jpg'))
+        self.image = pygame.transform.scale(self.image, (100, 100))
         
         # text surface
         font = pygame.font.SysFont("Arial", self.text_font_size, bold = True)
@@ -64,7 +69,8 @@ class WordBox(pygame.sprite.Sprite):
         H = self.text_surface.get_height()
         
         # image surface + text surface
-        self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height/2 - H/2])
+        # self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height/2 - H/2])
+        self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height - 35])
 
         # Update position of word box
         self.rect = self.image.get_rect()
@@ -73,11 +79,13 @@ class WordBox(pygame.sprite.Sprite):
     def update(self):
         self.rect.move_ip(0, 2)
         if self.rect.bottom > SCREEN_HEIGHT and not self.hit:
-            self.image.fill("red")
+            # self.image.fill("red")
+            self.image = pygame.image.load(Path('explosion.jpg'))
+            self.image = pygame.transform.scale(self.image, (100, 100))
             self.miss = True
 
 
-def update_word_boxes(word_box_group: pygame.sprite.Group, translations: dict, metrics: dict):
+def update_word_boxes(word_box_group: pygame.sprite.Group, translations: dict):
     # new box
     new_random_word = random.choice(list(translations.keys()))
     x = random.choice([0, 100, 200, 300, 400])
@@ -107,14 +115,6 @@ def update_score(word_box_group):
 
 def load_translations():
     return yaml_file_to_dict(TRANSLATIONS_PATH)
-
-
-def init_metrics():
-    return {
-        "score": 0,
-        "missed": 0,
-        "hits": 0,
-    }
     
 
 def display_time(screen, seconds_left: int):
@@ -132,8 +132,9 @@ def display_score(screen, score: int):
 def run():
     translations = load_translations()
     screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
-    metrics = init_metrics()
     word_box_group = pygame.sprite.Group()
+
+    background_img = pygame.image.load('background.jpg')
     
     score = 0
     running = True
@@ -149,6 +150,7 @@ def run():
         # fetch_transcripts()
 
         screen.fill(SCREEN_COLOR)
+        screen.blit(background_img, (0, 0))
         word_box_group.update()
         word_box_group.draw(screen)
         
@@ -170,7 +172,7 @@ def run():
                         word_box.hit = True
 
             if event.type == new_word_box_event:
-                update_word_boxes(word_box_group, translations, metrics)
+                update_word_boxes(word_box_group, translations)
     
     
     time.sleep(3)
