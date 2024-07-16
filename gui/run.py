@@ -161,6 +161,15 @@ def run():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                print(f"Mouse click at x={x}, y={y}")
+
+                for word_box in word_box_group:
+                    if word_box.rect.collidepoint(x, y):
+                        word_box.image.fill("green")
+                        word_box.hit = True
+
             if event.type == new_word_box_event:
                 update_word_boxes(word_box_group, translations, metrics)
     
