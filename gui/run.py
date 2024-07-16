@@ -21,7 +21,7 @@ TEXT_FONT_SIZE = 20
 TEXT_COLOR = "black"
 WORD_BOX_COLOR = "yellow"
 
-NEW_WORD_BOX_EVERY = 100
+NEW_WORD_BOX_EVERY = 1000
 FPS = 60
 
 TRANSLATIONS_PATH = "en_es.yaml"
@@ -156,7 +156,7 @@ def run():
         clock.tick(FPS)
 
         # Calculate time left
-        seconds_left = (60000 - (pygame.time.get_ticks() - start_ticks)) // 1000
+        seconds_left = (20000 - (pygame.time.get_ticks() - start_ticks)) // 1000
         if seconds_left <= 0:
             running = False  # End the game when the timer reaches 0
 
