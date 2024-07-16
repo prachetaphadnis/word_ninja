@@ -24,6 +24,8 @@ WORD_BOX_COLOR = "yellow"
 NEW_WORD_BOX_EVERY = 1000
 FPS = 60
 
+GAME_TIME_IN_SECONDS = 20
+METRICS_FONT_SIZE = 36
 TRANSLATIONS_PATH = "en_es.yaml"
 
 # ===========================
@@ -35,7 +37,7 @@ new_word_box_event = pygame.USEREVENT + 1
 pygame.time.set_timer(new_word_box_event, NEW_WORD_BOX_EVERY)
 
 class WordBox(pygame.sprite.Sprite):
-    def __init__(self, text: str, translation: str, x: int, y: int):
+    def __init__(self, text: str, translation: str, x: int, y: int, image_resources: dict):
         pygame.sprite.Sprite.__init__(self)
 
         self.translation = text
@@ -45,6 +47,8 @@ class WordBox(pygame.sprite.Sprite):
         self.word_box_width = WORD_BOX_WITDH
         self.word_box_height = WORD_BOX_HEIGHT
         self.word_box_color = WORD_BOX_COLOR
+
+        self.image_resources = image_resources
 
         # top left x, y coordinates
         self.init_x = x
@@ -59,8 +63,7 @@ class WordBox(pygame.sprite.Sprite):
 
     def _init_sprite(self):
         # parachute surface
-        self.image = pygame.image.load(Path('gui/images/parachute.png')).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (100, 100))
+        self.image = pygame.transform.scale(self.image_resources["parachute"], (100, 100))
 
         # text surface
         font = pygame.font.SysFont("Arial", self.text_font_size, bold = True)
@@ -68,8 +71,7 @@ class WordBox(pygame.sprite.Sprite):
         W = self.text_surface.get_width()
         H = self.text_surface.get_height()
 
-        # image surface + text surface
-        # self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height/2 - H/2])
+        # parachute surface + text surface
         self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height - 25])
 
         # Update position of word box
@@ -78,9 +80,8 @@ class WordBox(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.move_ip(0, 2)
-        boom_image = pygame.image.load(Path('gui/images/explosion.png')).convert_alpha()
         if self.rect.bottom > SCREEN_HEIGHT and not self.hit:
-            self.image = boom_image
+            self.image = self.image_resources["explosion"]
             self.image = pygame.transform.scale(self.image, (100, 100))
             self.miss = True
 
@@ -92,10 +93,10 @@ class WordBox(pygame.sprite.Sprite):
         self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height/2 - H/2])
 
 
-def update_word_boxes(word_box_group: pygame.sprite.Group, translations: dict):
+def update_word_boxes(word_box_group: pygame.sprite.Group, translations: dict, image_resources: dict):
     new_random_word = random.choice(list(translations.keys()))
-    x = random.choice([0, 100, 200, 300, 400])
-    word_box = WordBox(new_random_word, translations[new_random_word], x, 0)
+    x = random.choice(list(range(0, SCREEN_WIDTH, 100)))
+    word_box = WordBox(new_random_word, translations[new_random_word], x, 0, image_resources)
     word_box_group.add(word_box)
 
 
@@ -120,13 +121,13 @@ def load_translations():
 
 
 def display_time(screen, seconds_left: int):
-    font = pygame.font.SysFont("Arial", 36, bold = True)
+    font = pygame.font.SysFont("Arial", METRICS_FONT_SIZE, bold = True)
     timer_text = font.render(f"Time Left: {seconds_left}", True, "black")
-    screen.blit(timer_text, (SCREEN_WIDTH - 250, SCREEN_HEIGHT - 50))
+    screen.blit(timer_text, (SCREEN_WIDTH - 230, SCREEN_HEIGHT - 50))
 
 
 def display_score(screen, score: int):
-    font = pygame.font.SysFont("Arial", 36, bold = True)
+    font = pygame.font.SysFont("Arial", METRICS_FONT_SIZE, bold = True)
     score_text = font.render(f'Score: {score}', True, "black")
     screen.blit(score_text, (10, SCREEN_HEIGHT-50))
 
@@ -136,11 +137,16 @@ def run():
     screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
     word_box_group = pygame.sprite.Group()
 
-    background_img = pygame.image.load('gui/images/background.jpg')
+    # load image resources
+    image_resources = {
+        "background": pygame.image.load('gui/images/background.jpg'),
+        "fish": pygame.image.load('gui/images/fish.png').convert_alpha(),
+        "parachute": pygame.image.load(Path('gui/images/parachute.png')).convert_alpha(),
+        "explosion": pygame.image.load(Path('gui/images/explosion.png')).convert_alpha()
+    }
 
-    score = 0
     running = True
-    start_ticks = pygame.time.get_ticks()  # Start timer
+    start_ticks = pygame.time.get_ticks()
 
     transcriber = SMTranscribe()
     thread = threading.Thread(target=transcriber.run)
@@ -152,7 +158,7 @@ def run():
         clock.tick(FPS)
 
         # Calculate time left
-        seconds_left = (20000 - (pygame.time.get_ticks() - start_ticks)) // 1000
+        seconds_left = (GAME_TIME_IN_SECONDS * 1000 - (pygame.time.get_ticks() - start_ticks)) // 1000
         if seconds_left <= 0:
             running = False  # End the game when the timer reaches 0
 
@@ -163,13 +169,12 @@ def run():
 
         for word_box in word_box_group:
             if word == word_box.translation:
-                fish_img = pygame.image.load('gui/images/fish.png').convert_alpha()
-                word_box.image = pygame.transform.scale(fish_img, (100, 100))
+                word_box.image = pygame.transform.scale(image_resources["fish"], (100, 100))
                 # word_box.update_text()
                 word_box.hit = True
 
         screen.fill(SCREEN_COLOR)
-        screen.blit(background_img, (0, 0))
+        screen.blit(image_resources["background"], (0, 0))
         word_box_group.update()
         word_box_group.draw(screen)
 
@@ -184,7 +189,7 @@ def run():
                 running = False
 
             if event.type == new_word_box_event:
-                update_word_boxes(word_box_group, translations)
+                update_word_boxes(word_box_group, translations, image_resources)
 
     time.sleep(3)
     pygame.quit()
