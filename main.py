@@ -25,7 +25,6 @@ class SMTranscribe:
     def transcript_handler(self, message):
         if message.get('results', None):
             for results in message['results']:
-                # print(results['alternatives'][0]['content'])
                 QUEUE.put(results['alternatives'][0]['content'])
 
     def run(self):
@@ -69,43 +68,3 @@ def display_text(word, screen, background_color, text_color):
     text_surface = font.render(word, True, text_color)
     screen.blit(text_surface, (20, 20))
     pygame.display.flip()
-
-
-def main():
-    pygame.init()
-    background_color = (255, 255, 255)
-    text_color = (0, 0, 0)
-    screen = pygame.display.set_mode([500, 500])
-    screen.fill(background_color)
-    pygame.display.flip()
-
-    transcriber = SMTranscribe()
-    thread = threading.Thread(target=transcriber.run)
-    thread.start()
-
-    # Run until the user asks to quit
-    running = True
-    word = ""
-    while running:
-        # Did the user click the window close button?
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-            try:
-                word = QUEUE.get(block=False)
-            except:
-                word = word
-            else:
-                print(word)
-                display_text(word, screen, background_color, text_color)
-
-
-    # Done! Time to quit.
-    pygame.quit()
-
-
-if __name__ == "__main__":
-    main()
-
- 

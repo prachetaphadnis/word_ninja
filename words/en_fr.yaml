@@ -1,0 +1,102 @@
+easy:
+ hello : bonjour
+ goodbye : au revoir
+ yes : oui
+ no : non
+ please : s'il vous plaît
+ thank you : merci
+ water : eau
+ food : nourriture
+ house : maison
+ car : voiture
+ dog : chien
+ cat : chat
+ friend : ami
+ family : famille
+ mother : mère
+ father : père
+ brother : frère
+ sister : sœur
+ boy : garçon
+ girl : fille
+ man : homme
+ woman : femme
+ book : livre
+ school : école
+ teacher : professeur
+ student : étudiant
+ sun : soleil
+ moon : lune
+ star : étoile
+ tree : arbre
+ flower : fleur
+ bird : oiseau
+ fish : poisson
+ apple : pomme
+ banana : banane
+ bread : pain
+ milk : lait
+ coffee : café
+ tea : thé
+ good : bon
+ bad : mauvais
+ big : grand
+ small : petit
+ hot : chaud
+ cold : froid
+ happy : heureux
+ sad : triste
+ love : amour
+ time : temps
+ money : argent
+advanced:
+ hello : salutations
+ goodbye : adieu
+ yes : affirmatif
+ no : nullement
+ please : je vous prie
+ thank you : je vous remercie
+ water : onde
+ food : victuailles
+ house : demeure
+ car : véhicule
+ dog : canidé
+ cat : félin
+ friend : camarade
+ family : lignée
+ mother : génitrice
+ father : géniteur
+ brother : frangin
+ sister : frangine
+ boy : damoiseau
+ girl : demoiselle
+ man : monsieur
+ woman : gente dame
+ book : ouvrage
+ school : établissement scolaire
+ teacher : pédagogue
+ student : apprenant
+ sun : astre du jour
+ moon : astre lunaire
+ star : corps céleste
+ tree : végétal ligneux
+ flower : flore
+ bird : volatile
+ fish : poisson
+ apple : fruit du pommier
+ banana : fruit du bananier
+ bread : pain
+ milk : produit laitier
+ coffee : breuvage caféiné
+ tea : infusion
+ good : remarquable
+ bad : déplorable
+ big : colossal
+ small : minuscule
+ hot : torride
+ cold : glacial
+ happy : jovial
+ sad : mélancolique
+ love : affection
+ time : temporalité
+ money : pécule

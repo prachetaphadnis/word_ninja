@@ -1,3 +1,4 @@
+import argparse
 import pygame
 import threading
 import time
@@ -26,7 +27,7 @@ FPS = 60
 
 GAME_TIME_IN_SECONDS = 20
 METRICS_FONT_SIZE = 36
-TRANSLATIONS_PATH = "en_es.yaml"
+TRANSLATIONS_DIR = "./words"
 
 # ===========================
 
@@ -116,8 +117,8 @@ def update_score(word_box_group):
     return score
 
 
-def load_translations():
-    return yaml_file_to_dict(TRANSLATIONS_PATH)
+def load_translations(lang, level):
+    return yaml_file_to_dict(TRANSLATIONS_DIR, lang, level)
 
 
 def display_time(screen, seconds_left: int):
@@ -132,8 +133,8 @@ def display_score(screen, score: int):
     screen.blit(score_text, (10, SCREEN_HEIGHT-50))
 
 
-def run():
-    translations = load_translations()
+def run(lang, level):
+    translations = load_translations(lang, level)
     screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
     word_box_group = pygame.sprite.Group()
 
@@ -148,10 +149,6 @@ def run():
     running = True
     start_ticks = pygame.time.get_ticks()
 
-    transcriber = SMTranscribe()
-    thread = threading.Thread(target=transcriber.run)
-    thread.start()
-
     word = ""
 
     while running:
@@ -160,29 +157,37 @@ def run():
         # Calculate time left
         seconds_left = (GAME_TIME_IN_SECONDS * 1000 - (pygame.time.get_ticks() - start_ticks)) // 1000
         if seconds_left <= 0:
-            running = False  # End the game when the timer reaches 0
+            screen.fill(SCREEN_COLOR)
+            screen.blit(image_resources["background"], (0, 0))
+            font = pygame.font.SysFont("Arial", 36, bold = True)
+            gameover = font.render("Press R to Respawn", False, (255, 255, 255))
+            rect = gameover.get_rect()
+            rect.center = screen.get_rect().center
+            screen.blit(gameover, rect)
+            pygame.display.flip()
+            # running = False  # End the game when the timer reaches 0
+        else:
+            try:
+                word = QUEUE.get(block=False)
+            except:
+                word = word
 
-        try:
-            word = QUEUE.get(block=False)
-        except:
-            word = word
+            for word_box in word_box_group:
+                if word == word_box.translation:
+                    word_box.image = pygame.transform.scale(image_resources["fish"], (100, 100))
+                    # word_box.update_text()
+                    word_box.hit = True
 
-        for word_box in word_box_group:
-            if word == word_box.translation:
-                word_box.image = pygame.transform.scale(image_resources["fish"], (100, 100))
-                # word_box.update_text()
-                word_box.hit = True
+            screen.fill(SCREEN_COLOR)
+            screen.blit(image_resources["background"], (0, 0))
+            word_box_group.update()
+            word_box_group.draw(screen)
 
-        screen.fill(SCREEN_COLOR)
-        screen.blit(image_resources["background"], (0, 0))
-        word_box_group.update()
-        word_box_group.draw(screen)
+            score = update_score(word_box_group)
 
-        score = update_score(word_box_group)
-
-        display_score(screen, score)
-        display_time(screen, seconds_left)
-        pygame.display.flip()
+            display_score(screen, score)
+            display_time(screen, seconds_left)
+            pygame.display.flip()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -190,10 +195,24 @@ def run():
 
             if event.type == new_word_box_event:
                 update_word_boxes(word_box_group, translations, image_resources)
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    run(lang, level)
+
 
     time.sleep(3)
     pygame.quit()
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(description="Cli to start word ninja",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("--lang", default="es", type=str)
+    parser.add_argument("--level", default="easy", type=str)
+    args = parser.parse_args()
+
+    transcriber = SMTranscribe()
+    thread = threading.Thread(target=transcriber.run)
+    thread.start()
+    run(args.lang, args.level)

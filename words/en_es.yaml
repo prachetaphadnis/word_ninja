@@ -1,0 +1,102 @@
+easy:
+ hello : hola
+ goodbye : adiós
+ yes : sí
+ no : no
+ please : por favor
+ thank you : gracias
+ water : agua
+ food : comida
+ house : casa
+ car : coche
+ dog : perro
+ cat : gato
+ friend : amigo
+ family : familia
+ mother : madre
+ father : padre
+ brother : hermano
+ sister : hermana
+ boy : niño
+ girl : niña
+ man : hombre
+ woman : mujer
+ book : libro
+ school : escuela
+ teacher : maestro
+ student : estudiante
+ sun : sol
+ moon : luna
+ star : estrella
+ tree : árbol
+ flower : flor
+ bird : pájaro
+ fish : pez
+ apple : manzana
+ banana : plátano
+ bread : pan
+ milk : leche
+ coffee : café
+ tea : té
+ good : bueno
+ bad : malo
+ big : grande
+ small : pequeño
+ hot : caliente
+ cold : frío
+ happy : feliz
+ sad : triste
+ love : amor
+ time : tiempo
+ money : dinero
+advanced:
+ hello : salutaciones
+ goodbye : despedida
+ yes : afirmativo
+ no : en absoluto
+ please : le ruego
+ thank you : le agradezco
+ water : líquido vital
+ food : víveres
+ house : morada
+ car : vehículo
+ dog : can
+ cat : felino
+ friend : camarada
+ family : estirpe
+ mother : progenitora
+ father : progenitor
+ brother : hermano varón
+ sister : hermana mujer
+ boy : zagal
+ girl : zagala
+ man : caballero
+ woman : dama
+ book : obra
+ school : centro docente
+ teacher : pedagogo
+ student : educando
+ sun : astro rey
+ moon : satélite natural
+ star : cuerpo celeste
+ tree : espécimen arbóreo
+ flower : espécimen floral
+ bird : ave
+ fish : pez
+ apple : fruto del manzano
+ banana : fruto del plátano
+ bread : pan
+ milk : producto lácteo
+ coffee : brebaje cafeinado
+ tea : infusión
+ good : excelente
+ bad : pésimo
+ big : descomunal
+ small : diminuto
+ hot : tórrido
+ cold : gélido
+ happy : jubiloso
+ sad : apesadumbrado
+ love : afecto
+ time : temporalidad
+ money : peculio
