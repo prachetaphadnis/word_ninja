@@ -59,7 +59,7 @@ class WordBox(pygame.sprite.Sprite):
         # self.image.fill(self.word_box_color)
 
         # parachute surface
-        self.image = pygame.image.load(Path('parachute.jpg'))
+        self.image = pygame.image.load(Path('gui/images/parachute.jpg'))
         self.image = pygame.transform.scale(self.image, (100, 100))
         
         # text surface
@@ -80,7 +80,7 @@ class WordBox(pygame.sprite.Sprite):
         self.rect.move_ip(0, 2)
         if self.rect.bottom > SCREEN_HEIGHT and not self.hit:
             # self.image.fill("red")
-            self.image = pygame.image.load(Path('explosion.jpg'))
+            self.image = pygame.image.load(Path('gui/images/explosion.jpg'))
             self.image = pygame.transform.scale(self.image, (100, 100))
             self.miss = True
 
@@ -134,7 +134,7 @@ def run():
     screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
     word_box_group = pygame.sprite.Group()
 
-    background_img = pygame.image.load('background.jpg')
+    background_img = pygame.image.load('gui/images/background.jpg')
     
     score = 0
     running = True
