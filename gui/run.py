@@ -11,8 +11,8 @@ from gui.utils import yaml_file_to_dict
 # == GUI ====================
 # screen
 SCREEN_COLOR = (59, 108, 160)
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 500
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 700
 
 # word box
 WORD_BOX_WITDH = 100
@@ -132,8 +132,7 @@ def display_score(screen, score: int):
     screen.blit(score_text, (10, SCREEN_HEIGHT-50))
 
 
-def run(lang, level):
-    translations = load_translations(lang, level)
+def _run(lang, translations, level):
     screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
 
     # load image resources
@@ -199,6 +198,13 @@ def run(lang, level):
                 word_box_group = pygame.sprite.Group()
 
     pygame.quit()
+
+
+def run(lang, translations, level="easy"):
+    transcriber = SMTranscribe()
+    thread = threading.Thread(target=transcriber.run)
+    thread.start()
+    _run(lang, translations, level)
 
 
 if __name__ == "__main__":
