@@ -9,7 +9,7 @@ from gui.utils import yaml_file_to_dict
 
 # == GUI ====================
 # screen
-SCREEN_COLOR = (59, 108, 160)
+SCREEN_COLOR = (11, 49, 98)
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 700
 
@@ -79,7 +79,7 @@ class WordBox(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.move_ip(0, 2)
-        if self.rect.bottom > SCREEN_HEIGHT and not self.hit:
+        if self.rect.bottom > SCREEN_HEIGHT - 200 and not self.hit:
             self.image = self.image_resources["explosion"]
             self.image = pygame.transform.scale(self.image, (100, 100))
             self.miss = True
@@ -136,7 +136,7 @@ def _run(lang, translations, level):
 
     # load image resources
     image_resources = {
-        "background": pygame.image.load('gui/images/background.jpg'),
+        "background": pygame.image.load('gui/images/background.png'),
         "fish": pygame.image.load('gui/images/fish.png').convert_alpha(),
         "parachute": pygame.image.load(Path('gui/images/parachute.png')).convert_alpha(),
         "explosion": pygame.image.load(Path('gui/images/explosion.png')).convert_alpha()
