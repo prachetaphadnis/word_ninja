@@ -1,40 +1,40 @@
 easy:
  hello : hallo
- goodbye : auf wiedersehen
+ goodbye : tschüss
  'yes' : ja
  'no' : nein
  please : bitte
  thank you : danke
- water : wasser
- food : essen
- house : haus
- car : auto
- dog : hund
- cat : katze
+ sorry : entschuldigung
+ man : mann
+ woman : frau
+ child : kind
+ boy : junge
+ girl : mädchen
  friend : freund
  family : familie
  mother : mutter
  father : vater
  brother : bruder
  sister : schwester
- boy : junge
- girl : mädchen
- man : mann
- woman : frau
- book : buch
- school : schule
- teacher : lehrer/in
- student : student/in
- sun : sonne
- moon : mond
- star : stern
- tree : baum
- flower : blume
- bird : vogel
- fish : fisch
+ house : haus
+ apartment : wohnung
+ room : zimmer
+ kitchen : küche
+ bathroom : badezimmer
+ bed : bett
+ chair : stuhl
+ table : tisch
+ door : tür
+ window : fenster
+ car : auto
+ bus : bus
+ train : zug
+ bicycle : fahrrad
  apple : apfel
  banana : banane
  bread : brot
+ water : wasser
  milk : milch
  coffee : kaffee
  tea : tee
@@ -42,61 +42,111 @@ easy:
  bad : schlecht
  big : groß
  small : klein
+ new : neu
+ old : alt
+ beautiful : schön
+ ugly : hässlich
+ expensive : teuer
+ cheap : billig
  hot : heiß
  cold : kalt
+ easy : einfach
+ difficult : schwierig
  happy : glücklich
  sad : traurig
- love : liebe
+ tired : müde
+ hungry : hungrig
+ thirsty : durstig
+ today : heute
+ tomorrow : morgen
+ yesterday : gestern
+ week : woche
+ month : monat
+ year : jahr
+ morning : morgen
+ evening : abend
+ night : nacht
  time : zeit
- money : geld
+ hour : stunde
+ minute : minute
+ day : tag
+ red : rot
+ blue : blau
+ green : grün
+ yellow : gelb
 advanced:
- hello : grüß gott
- goodbye : lebewohl
- 'yes' : jawohl
- 'no' : mitnichten
- please : gefälligst
- thank you : ich danke ihnen
- water : gewässer
- food : nahrungsmittel
- house : anwesen
- car : kraftfahrzeug
- dog : canide
- cat : felide
- friend : kumpan
- family : sippe
- mother : gebärerin
- father : erzeuger
- brother : geschwister (männlich)
- sister : geschwister (weiblich)
- boy : knabe
- girl : mädel
- man : herr
- woman : dame
- book : schmöker
- school : lehranstalt
- teacher : pädagoge/pädagogin
- student : lernender
- sun : gestirn
- moon : erdtrabant
- star : himmelskörper
- tree : gehölz
- flower : blüte
- bird : gefiederter freund
- fish : meeresbewohner
- apple : kernobst
- banana : pisang
- bread : backware
- milk : molkereiprodukt
- coffee : mokka
- tea : aufguss
- good : vortrefflich
- bad : miserabel
- big : gewaltig
- small : winzig
- hot : brütend heiß
- cold : eisig
- happy : selig
- sad : niedergeschlagen
- love : zuneigung
- time : zeitspanne
- money : zahlungsmittel
+ ambition : ehrgeiz
+ architecture : architektur
+ atmosphere : atmosphäre
+ balance : gleichgewicht
+ barrier : barriere
+ behavior : verhalten
+ belief : glaube
+ benefit : vorteil
+ boundary : grenze
+ bravery : tapferkeit
+ budget : haushalt
+ career : karriere
+ challenge : herausforderung
+ character : charakter
+ climate : klima
+ community : gemeinschaft
+ concept : konzept
+ connection : verbindung
+ consequence : konsequenz
+ context : kontext
+ creativity : kreativität
+ criticism : kritik
+ culture : kultur
+ customer : kunde
+ decision : entscheidung
+ democracy : demokratie
+ description : beschreibung
+ detail : detail
+ development : entwicklung
+ difference : unterschied
+ difficulty : schwierigkeit
+ direction : richtung
+ disadvantage : nachteil
+ discovery : entdeckung
+ diversity : vielfalt
+ efficiency : effizienz
+ emotion : emotion
+ energy : energie
+ environment : umwelt
+ evidence : beweis
+ experience : erfahrung
+ explanation : erklärung
+ freedom : freiheit
+ generation : generation
+ habit : gewohnheit
+ heritage : erbe
+ honesty : ehrlichkeit
+ idea : idee
+ identity : identität
+ image : bild
+ importance : wichtigkeit
+ influence : einfluss
+ information : information
+ initiative : initiative
+ innovation : innovation
+ inspiration : inspiration
+ intelligence : intelligenz
+ interaction : interaktion
+ investment : investition
+ knowledge : wissen
+ language : sprache
+ leadership : führung
+ lifestyle : lebensstil
+ literature : literatur
+ logic : logik
+ loyalty : loyalität
+ majority : mehrheit
+ memory : gedächtnis
+ method : methode
+ minority : minderheit
+ motivation : motivation
+ nature : natur
+ opportunity : gelegenheit
+ patience : geduld
+ perception : wahrnehmung

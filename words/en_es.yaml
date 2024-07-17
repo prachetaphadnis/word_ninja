@@ -1,102 +1,157 @@
 easy:
  hello : hola
  goodbye : adiós
+ thank you : gracias
+ please : por favor
  'yes' : sí
  'no' : 'no'
- please : por favor
- thank you : gracias
- water : agua
- food : comida
- house : casa
- car : coche
- dog : perro
- cat : gato
- friend : amigo
- family : familia
  mother : madre
  father : padre
- brother : hermano
- sister : hermana
- boy : niño
- girl : niña
- man : hombre
- woman : mujer
- book : libro
- school : escuela
- teacher : maestro
- student : estudiante
- sun : sol
- moon : luna
- star : estrella
- tree : árbol
- flower : flor
- bird : pájaro
- fish : pez
- apple : manzana
- banana : plátano
- bread : pan
- milk : leche
- coffee : café
- tea : té
+ you : tú
+ he : él
+ she : ella
+ we : nosotros
+ city : ciudad
+ fun : divertido
+ they : ellos
+ delicious : delicioso
+ tired : cansado
+ but : pero
+ one : uno
+ two : dos
+ three : tres
+ four : cuatro
+ five : cinco
  good : bueno
  bad : malo
  big : grande
  small : pequeño
+ today : hoy
+ tomorrow : mañana
+ yesterday : ayer
+ food : comida
+ dog : perro
+ cat : gato
+ house : casa
+ family : familia
+ friend : amigo
+ work : trabajo
+ school : escuela
+ book : libro
+ table : mesa
+ chair : silla
+ car : coche
+ water : agua
+ bread : pan
+ milk : leche
+ apple : manzana
+ red : rojo
+ blue : azul
+ green : verde
+ white : blanco
+ black : negro
+ name : nombre
+ age : edad
+ hour: hora
+ day : día
+ week : semana
+ month : mes
+ year : año
+ a lot : mucho
+ little : poco
+ well : bien
+ bad : mal
  hot : caliente
  cold : frío
+ new : nuevo
+ old : viejo
+ easy : fácil
+ difficult : difícil
+ tall : alto
+ short : bajo
  happy : feliz
  sad : triste
- love : amor
- time : tiempo
- money : dinero
+ pretty : bonito
+ ugly : feo
+ cheap : barato
+ expensive : caro
+ fast : rápido
+ brother : hermano
+ sister : hermana
 advanced:
- hello : salutaciones
- goodbye : despedida
- 'yes' : afirmativo
- 'no' : en absoluto
- please : le ruego
- thank you : le agradezco
- water : líquido vital
- food : víveres
- house : morada
- car : vehículo
- dog : can
- cat : felino
- friend : camarada
- family : estirpe
- mother : progenitora
- father : progenitor
- brother : hermano varón
- sister : hermana mujer
- boy : zagal
- girl : zagala
- man : caballero
- woman : dama
- book : obra
- school : centro docente
- teacher : pedagogo
- student : educando
- sun : astro rey
- moon : satélite natural
- star : cuerpo celeste
- tree : espécimen arbóreo
- flower : espécimen floral
- bird : ave
- fish : pez
- apple : fruto del manzano
- banana : fruto del plátano
- bread : pan
- milk : producto lácteo
- coffee : brebaje cafeinado
- tea : infusión
- good : excelente
- bad : pésimo
- big : descomunal
- small : diminuto
- hot : tórrido
- cold : gélido
- happy : jubiloso
- sad : apesadumbrado
- love : afecto
- time : temporalidad
- money : peculio
+ determination : ahínco
+ free will : albedrío
+ frugal : frugal
+ boredom : hastío
+ laconic : lacónico
+ trivial : nimio
+ perennial : perenne
+ plausible : plausible
+ precarious : precario
+ swift : raudo
+ reluctant : reticente
+ tacit : tácito
+ vehement : vehemente
+ error : yerro
+ meticulous : minucioso
+ ephemeral : efímero
+ eloquent : elocuente
+ audacious : audaz
+ tenacious : tenaz
+ diligent : diligente
+ ambiguous : ambiguo
+ notorious : notorio
+ impartial : imparcial
+ arduous : arduo
+ concise : conciso
+ fickle : voluble
+ shrewd : sagaz
+ ruthless : despiadado
+ subtle : sutil
+ overwhelming : abrumador
+ resilient : resiliente
+ dilemma : dilema
+ nuance : matiz
+ paradox : paradoja
+ euphemism : eufemismo
+ paradigm : paradigma
+ synthesis : síntesis
+ empathy : empatía
+ pragmatic : pragmático
+ enigmatic : enigmático
+ eloquence : elocuencia
+ idiosyncrasy : idiosincrasia
+ utopia : utopía
+ dystopia : distopía
+ altruism : altruismo
+ narcissism : narcisismo
+ melancholy : melancolía
+ euphoria : euforia
+ nostalgia : nostalgia
+ apathy : apatía
+ quintessential : quintaesencial
+ ubiquitous : ubicuo
+ ephemeral : efímero
+ obsolete : obsoleto
+ arbitrary : arbitrario
+ enigma : enigma
+ serendipity : serendipia
+ meticulous : meticuloso
+ inherent : inherente
+ ambivalent : ambivalente
+ ethereal : etéreo
+ elusive : escurridizo
+ benevolent : benévolo
+ charisma : carisma
+ conundrum : acertijo
+ dichotomy : dicotomía
+ esoteric : esotérico
+ fickle : voluble
+ fortuitous : fortuito
+ gregarious : gregario
+ impeccable : impecable
+ innate : innato
+ lucid : lúcido
+ malevolent : malévolo
+ nihilism : nihilismo
+ 

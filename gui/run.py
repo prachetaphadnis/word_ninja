@@ -1,6 +1,7 @@
 import pygame
 import threading
 import random
+from math import ceil
 from main import SMTranscribe, QUEUE
 from pathlib import Path
 
@@ -16,7 +17,8 @@ SCREEN_HEIGHT = 700
 # word box
 WORD_BOX_WITDH = 100
 WORD_BOX_HEIGHT = 100
-TEXT_FONT_SIZE = 20
+TEXT_FONT_SIZE = 15
+TEXT_SCALE = 0.85
 TEXT_COLOR = "black"
 WORD_BOX_COLOR = "yellow"
 
@@ -59,16 +61,24 @@ class WordBox(pygame.sprite.Sprite):
 
         # init sprite (box with text)
         self._init_sprite()
+    
+    def _init_text_surface(self):
+        font = pygame.font.SysFont("Arial", self.text_font_size, bold = True)
+        W = font.size(self.text)[0]
+        while W - self.word_box_width > 0:
+            self.text_font_size = ceil(self.text_font_size * TEXT_SCALE)
+            font = pygame.font.SysFont("Arial", self.text_font_size, bold = True)
+            W = font.size(self.text)[0]
+        self.text_surface = font.render(self.text, 1, self.text_color)       
+
 
     def _init_sprite(self):
         # parachute surface
         self.image = pygame.transform.scale(self.image_resources["parachute"], (100, 100))
 
         # text surface
-        font = pygame.font.SysFont("Arial", self.text_font_size, bold = True)
-        self.text_surface = font.render(self.text, 1, self.text_color)       
+        self._init_text_surface()
         W = self.text_surface.get_width()
-        H = self.text_surface.get_height()
 
         # parachute surface + text surface
         self.image.blit(self.text_surface, [self.word_box_width/2 - W/2, self.word_box_height - 25])

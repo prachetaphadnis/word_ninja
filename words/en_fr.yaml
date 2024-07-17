@@ -1,102 +1,152 @@
 easy:
- hello : bonjour
- goodbye : au revoir
- 'yes' : oui
- 'no' : non
- please : s'il vous plaît
- thank you : merci
- water : eau
- food : nourriture
- house : maison
- car : voiture
- dog : chien
- cat : chat
- friend : ami
- family : famille
- mother : mère
- father : père
- brother : frère
- sister : sœur
- boy : garçon
- girl : fille
- man : homme
- woman : femme
- book : livre
- school : école
- teacher : professeur
- student : étudiant
- sun : soleil
- moon : lune
- star : étoile
- tree : arbre
- flower : fleur
- bird : oiseau
- fish : poisson
  apple : pomme
  banana : banane
  bread : pain
- milk : lait
+ brother : frère
+ cat : chat
+ cheese : fromage
+ child : enfant
+ city : ville
+ coat : manteau
  coffee : café
- tea : thé
- good : bon
- bad : mauvais
- big : grand
- small : petit
- hot : chaud
- cold : froid
- happy : heureux
- sad : triste
- love : amour
- time : temps
- money : argent
-advanced:
- hello : salutations
- goodbye : adieu
- 'yes' : affirmatif
- 'no' : nullement
- please : je vous prie
- thank you : je vous remercie
- water : onde
- food : victuailles
- house : demeure
- car : véhicule
- dog : canidé
- cat : félin
- friend : camarade
- family : lignée
- mother : génitrice
- father : géniteur
- brother : frangin
- sister : frangine
- boy : damoiseau
- girl : demoiselle
- man : monsieur
- woman : gente dame
- book : ouvrage
- school : établissement scolaire
- teacher : pédagogue
- student : apprenant
- sun : astre du jour
- moon : astre lunaire
- star : corps céleste
- tree : végétal ligneux
- flower : flore
- bird : volatile
+ dog : chien
+ dress : robe
+ egg : œuf
+ family : famille
+ father : père
  fish : poisson
- apple : fruit du pommier
- banana : fruit du bananier
- bread : pain
- milk : produit laitier
- coffee : breuvage caféiné
- tea : infusion
- good : remarquable
- bad : déplorable
- big : colossal
- small : minuscule
- hot : torride
- cold : glacial
- happy : jovial
- sad : mélancolique
- love : affection
- time : temporalité
- money : pécule
+ friend : ami
+ fruit : fruit
+ garden : jardin
+ girl : fille
+ hat : chapeau
+ house : maison
+ jacket : veste
+ juice : jus
+ lamp : lampe
+ man : homme
+ milk : lait
+ mother : mère
+ name : nom
+ night : nuit
+ onion : oignon
+ orange : orange
+ park : parc
+ pen : stylo
+ person : personne
+ plate : assiette
+ restaurant : restaurant
+ rice : riz
+ room : chambre
+ salad : salade
+ school : école
+ shirt : chemise
+ shoe : chaussure
+ sister : sœur
+ soap : savon
+ soup : soupe
+ street : rue
+ student : étudiant
+ table : table
+ tea : thé
+ tree : arbre
+ uncle : oncle
+ university : université
+ vegetable : légume
+ water : eau
+ window : fenêtre
+ wine : vin
+ woman : femme
+ world : monde
+ year : année
+ boy : garçon
+ book : livre
+ car : voiture
+ chair : chaise
+ chocolate : chocolat
+ clock : horloge
+ coat : manteau
+ color : couleur
+ country : pays
+ day : jour
+ door : porte
+ flower : fleur
+ food : nourriture
+ friend : amie
+advanced:
+ achievement : réussite
+ adaptation : adaptation
+ advertisement : publicité
+ ambition : ambition
+ analysis : analyse
+ announcement : annonce
+ architecture : architecture
+ argument : argument
+ atmosphere : atmosphère
+ authority : autorité
+ balance : équilibre
+ barrier : barrière
+ behavior : comportement
+ belief : croyance
+ benefit : bénéfice
+ boundary : frontière
+ bravery : bravoure
+ budget : budget
+ career : carrière
+ challenge : défi
+ character : caractère
+ climate : climat
+ community : communauté
+ concept : concept
+ connection : connexion
+ consequence : conséquence
+ context : contexte
+ creativity : créativité
+ criticism : critique
+ culture : culture
+ customer : client
+ decision : décision
+ democracy : démocratie
+ description : description
+ detail : détail
+ development : développement
+ difference : différence
+ difficulty : difficulté
+ direction : direction
+ disadvantage : inconvénient
+ discovery : découverte
+ diversity : diversité
+ efficiency : efficacité
+ emotion : émotion
+ energy : énergie
+ environment : environnement
+ evidence : preuve
+ experience : expérience
+ explanation : explication
+ freedom : liberté
+ generation : génération
+ habit : habitude
+ heritage : patrimoine
+ honesty : honnêteté
+ idea : idée
+ identity : identité
+ image : image
+ importance : importance
+ influence : influence
+ information : information
+ initiative : initiative
+ innovation : innovation
+ inspiration : inspiration
+ intelligence : intelligence
+ interaction : interaction
+ investment : investissement
+ knowledge : connaissance
+ language : langue
+ leadership : leadership
+ lifestyle : mode de vie
+ literature : littérature
+ logic : logique
+ loyalty : loyauté
+ majority : majorité
+ memory : mémoire
+ 
