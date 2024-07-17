@@ -1,4 +1,3 @@
-import argparse
 import pygame
 import threading
 import random
@@ -205,16 +204,3 @@ def run(lang, translations, level="easy"):
     thread = threading.Thread(target=transcriber.run)
     thread.start()
     _run(lang, translations, level)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Cli to start word ninja",
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--lang", default="es", type=str)
-    parser.add_argument("--level", default="easy", type=str)
-    args = parser.parse_args()
-
-    transcriber = SMTranscribe()
-    thread = threading.Thread(target=transcriber.run)
-    thread.start()
-    run(args.lang, args.level)
