@@ -2,10 +2,10 @@ import speechmatics
 import sounddevice as sd
 import queue
 import pygame
-import threading
+import os
 
 
-API_KEY = "gn9nO1Bjx03leYBlTQfhkWC5hMXr0E2i"
+API_KEY = os.environ.get("API_KEY")
 LANGUAGE = "en"
 CONNECTION_URL = f"wss://eu2.rt.speechmatics.com/v2/{LANGUAGE}"
 DEVICE_INDEX = -1
@@ -29,6 +29,9 @@ class SMTranscribe:
 
     def run(self):
         # Define connection parameters
+        if API_KEY is None:
+            raise RuntimeError("API_KEY not set")
+
         conn = speechmatics.models.ConnectionSettings(
             url=CONNECTION_URL,
             auth_token=API_KEY,
