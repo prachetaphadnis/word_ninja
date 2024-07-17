@@ -1,8 +1,8 @@
 easy:
  hello : bonjour
  goodbye : au revoir
- yes : oui
- no : non
+ 'yes' : oui
+ 'no' : non
  please : s'il vous plaît
  thank you : merci
  water : eau
@@ -52,8 +52,8 @@ easy:
 advanced:
  hello : salutations
  goodbye : adieu
- yes : affirmatif
- no : nullement
+ 'yes' : affirmatif
+ 'no' : nullement
  please : je vous prie
  thank you : je vous remercie
  water : onde

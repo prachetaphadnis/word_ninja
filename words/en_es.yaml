@@ -1,8 +1,8 @@
 easy:
  hello : hola
  goodbye : adiós
- yes : sí
- no : no
+ 'yes' : sí
+ 'no' : 'no'
  please : por favor
  thank you : gracias
  water : agua
@@ -52,8 +52,8 @@ easy:
 advanced:
  hello : salutaciones
  goodbye : despedida
- yes : afirmativo
- no : en absoluto
+ 'yes' : afirmativo
+ 'no' : en absoluto
  please : le ruego
  thank you : le agradezco
  water : líquido vital
