@@ -10,5 +10,5 @@ pip3 install -r requirements.txt
 You will need an API key to call out to the real-time engine for transcription. It's easy to generate one using the [Speechmatics Portal](https://portal.speechmatics.com/). 
 ```bash
 export API_KEY=<your api key>
-python3 -m gui.run_with_menu
+python3 -m gui.run
 ```
