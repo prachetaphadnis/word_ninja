@@ -6,7 +6,7 @@ from main import SMTranscribe, QUEUE
 from pathlib import Path
 
 
-from gui.utils import yaml_file_to_dict
+from gui.utils import yaml_file_to_dict, Button
 
 # == GUI ====================
 # screen
@@ -28,6 +28,9 @@ FPS = 60
 GAME_TIME_IN_SECONDS = 30
 METRICS_FONT_SIZE = 36
 TRANSLATIONS_DIR = "./words"
+
+# button image
+IMAGE = "gui/images/button.png"
 
 # ===========================
 
@@ -141,7 +144,7 @@ def display_score(screen, score: int):
     screen.blit(score_text, (10, SCREEN_HEIGHT-50))
 
 
-def _run(lang, translations, level):
+def run(translations):
     screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
 
     # load image resources
@@ -203,14 +206,43 @@ def _run(lang, translations, level):
                 update_word_boxes(word_box_group, translations, image_resources)
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_r:
-                start_ticks = pygame.time.get_ticks()
-                word_box_group = pygame.sprite.Group()
+                menu()
 
     pygame.quit()
 
 
-def run(lang, translations, level="easy"):
+def menu():
+    screen = init_screen(SCREEN_WIDTH, SCREEN_HEIGHT)
+    spanish_button = Button(IMAGE, SCREEN_WIDTH-100, SCREEN_HEIGHT-40, "Spanish", "es")
+    german_button = Button(IMAGE, SCREEN_WIDTH-500, SCREEN_HEIGHT-40, "German", "de")
+    french_button = Button(IMAGE, SCREEN_WIDTH-300, SCREEN_HEIGHT-40, "French", "fr")
+    buttons = [spanish_button, german_button, french_button]
+    in_game=True
+
+    background = pygame.image.load("gui/images/menu_background.png")
+    background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
     transcriber = SMTranscribe()
     thread = threading.Thread(target=transcriber.run)
     thread.start()
-    _run(lang, translations, level)
+
+    while in_game:
+        screen.blit(background, (0, 0))
+
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                for button in buttons:
+                    button.checkForInput(mouse, run, [load_translations(button.lang, level="easy")])
+
+        for button in buttons:
+            button.update(screen)
+            button.changeColor(mouse)
+
+        pygame.display.update() 
+
+
+if __name__ == "__main__":
+    menu()

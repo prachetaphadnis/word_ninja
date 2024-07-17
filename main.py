@@ -1,6 +1,7 @@
 import speechmatics
 import sounddevice as sd
 import queue
+import os
 import pygame
 import os
 
@@ -62,6 +63,7 @@ class SMTranscribe:
             with sd.RawInputStream(channels=1, samplerate=44_100, dtype="float32") as stream:
                 self.ws.run_synchronously(RawInputStreamWrapper(stream), transcription_conf, settings)
         except:
+            self.ws.stop()
             print("Shutting down transcriber")
 
 
